@@ -5,7 +5,7 @@ public class Credentials  {
 	public String pwd;
 	
 	void set(String l, String p) {
-		login 	= l;
-		pwd 	= p;
+		login 	= (l==null ? "" : l);
+		pwd 	= (p==null ? "" : p);
 	}
 }

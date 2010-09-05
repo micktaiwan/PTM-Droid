@@ -51,6 +51,8 @@ public class PTMDroid extends Activity {
 
 	protected void onActivityResult(int requestCode, int resultCode,
 			String data, Bundle extras) {
+		
+		// why is it never called ???
 		loadConfig();
 		startActivity(new Intent(Intent.ACTION_VIEW, Uri
 				.parse("http://google.com")));
@@ -66,7 +68,7 @@ public class PTMDroid extends Activity {
 	protected void loadConfig() {
 		new Config().load(getApplicationContext(), credentials);
 		TextView t = (TextView) findViewById(R.id.status);
-		if (credentials.login == "") {
+		if (credentials.login == null) {
 			t.setText("Click on the MENU button to set your credentials");
 		} else {
 			t.setText("Logged as " + credentials.login);
