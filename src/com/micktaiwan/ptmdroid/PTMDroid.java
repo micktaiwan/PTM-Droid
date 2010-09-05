@@ -1,15 +1,10 @@
 package com.micktaiwan.ptmdroid;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,6 +15,7 @@ import android.widget.Toast;
 public class PTMDroid extends Activity {
 
 	private Credentials credentials;
+	static final int SETTINGS_ACTIVITY = 1;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -41,21 +37,36 @@ public class PTMDroid extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle item selection
 		switch (item.getItemId()) {
-		case R.id.settings:
-			startActivityForResult(new Intent(this, Settings.class), 1);
-			return true;
-		default:
-			return super.onOptionsItemSelected(item);
+			case R.id.settings :
+				startActivityForResult(new Intent(this, Settings.class),
+						SETTINGS_ACTIVITY);
+				return true;
+			default :
+				return super.onOptionsItemSelected(item);
 		}
 	}
 
+	private void showAlert(String string) {
+		new AlertDialog.Builder(this).setTitle("Message").setMessage(string)
+				.setNeutralButton("Close",
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dlg, int sumthin) {
+								// do nothing – it will close on its own
+							}
+						}).show();
+	}
+
+	// why is it never called ???
 	protected void onActivityResult(int requestCode, int resultCode,
 			String data, Bundle extras) {
-		
-		// why is it never called ???
 		loadConfig();
-		startActivity(new Intent(Intent.ACTION_VIEW, Uri
-				.parse("http://google.com")));
+		showAlert("Coming back from Settings");
+		if (requestCode == SETTINGS_ACTIVITY) {
+			/*
+			 * startActivity(new Intent(Intent.ACTION_VIEW, Uri
+			 * .parse("http://google.com")));
+			 */
+		}
 	}
 
 	protected void showToast(CharSequence text) {
@@ -68,7 +79,7 @@ public class PTMDroid extends Activity {
 	protected void loadConfig() {
 		new Config().load(getApplicationContext(), credentials);
 		TextView t = (TextView) findViewById(R.id.status);
-		if (credentials.login == null) {
+		if (credentials.login.equals("")) {
 			t.setText("Click on the MENU button to set your credentials");
 		} else {
 			t.setText("Logged as " + credentials.login);

@@ -6,6 +6,6 @@
 <TextView android:text="Login:" android:id="@+id/TextView01" android:layout_width="wrap_content" android:layout_height="wrap_content" />
 <EditText android:text="" android:id="@+id/login" android:layout_width="fill_parent" android:layout_height="wrap_content" />
 <TextView android:text="Password:" android:id="@+id/TextView02" android:layout_width="wrap_content" android:layout_height="wrap_content" />
-<EditText android:text="" android:id="@+id/pwd" android:layout_width="fill_parent" android:layout_height="wrap_content"/>
-<TextView android:text="Set your PTM credentials here and click your device back button to save them" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<EditText android:text="" android:id="@+id/pwd" android:layout_width="fill_parent" android:layout_height="wrap_content" android:password="true"/>
+<Button android:text="Save" android:id="@+id/save" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
 </LinearLayout>
