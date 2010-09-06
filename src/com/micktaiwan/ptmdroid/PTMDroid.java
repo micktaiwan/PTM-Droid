@@ -56,19 +56,16 @@ public class PTMDroid extends Activity {
 						}).show();
 	}
 
-	// why is it never called ???
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) { //, Bundle extras) {
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == SETTINGS_ACTIVITY && resultCode == RESULT_OK) {
 			loadConfig();
-			showAlert("Coming back from Settings");
+			//showAlert("Coming back from Settings");
 		}
 	}
 
 	protected void showToast(CharSequence text) {
-		Context context = getApplicationContext();
-		int duration = Toast.LENGTH_SHORT;
-		Toast toast = Toast.makeText(context, text, duration);
-		toast.show();
+		Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT)
+				.show();
 	}
 
 	protected void loadConfig() {

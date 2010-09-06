@@ -10,24 +10,24 @@ import android.widget.EditText;
 public class Settings extends Activity {
 
 	private Credentials credentials;
-	private EditText edit_login;
-	private EditText edit_pwd;
-	private Button save_button;
-	private Config config;
+	private EditText 	edit_login;
+	private EditText 	edit_pwd;
+	private Button 		save_button;
+	private Config 		config;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.settings);
-		credentials = new Credentials();
-		config = new Config();
+		credentials 	= new Credentials();
+		config 			= new Config();
 		config.load(getApplicationContext(), credentials);
-		edit_login = (EditText) findViewById(R.id.login);
-		edit_pwd = (EditText) findViewById(R.id.pwd);
+		edit_login 		= (EditText) findViewById(R.id.login);
+		edit_pwd 		= (EditText) findViewById(R.id.pwd);
 		edit_login.setText(credentials.login.toString());
 		edit_pwd.setText(credentials.pwd.toString());
-		save_button = (Button) findViewById(R.id.save);
-		save_button .setOnClickListener(mSaveListener);
+		save_button 	= (Button) findViewById(R.id.save);
+		save_button.setOnClickListener(mSaveListener);
 	}
 
 	OnClickListener mSaveListener = new OnClickListener() {
@@ -36,11 +36,7 @@ public class Settings extends Activity {
 					.toString());
 			config.save(getApplicationContext(), credentials);
 			setResult(RESULT_OK);
-			/*
-			 * Intent iwpa = new Intent(); iwpa.putExtra("returnValue",
-			 * RESULT_OK); setResult(RESULT_OK, iwpa);
-			 */
-			Settings.this.finish();
+			finish();
 		}
 	};
 	/*
