@@ -57,15 +57,10 @@ public class PTMDroid extends Activity {
 	}
 
 	// why is it never called ???
-	protected void onActivityResult(int requestCode, int resultCode,
-			String data, Bundle extras) {
-		loadConfig();
-		showAlert("Coming back from Settings");
-		if (requestCode == SETTINGS_ACTIVITY) {
-			/*
-			 * startActivity(new Intent(Intent.ACTION_VIEW, Uri
-			 * .parse("http://google.com")));
-			 */
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) { //, Bundle extras) {
+		if (requestCode == SETTINGS_ACTIVITY && resultCode == RESULT_OK) {
+			loadConfig();
+			showAlert("Coming back from Settings");
 		}
 	}
 
