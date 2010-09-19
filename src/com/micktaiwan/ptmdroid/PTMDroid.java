@@ -59,7 +59,6 @@ public class PTMDroid extends Activity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == SETTINGS_ACTIVITY && resultCode == RESULT_OK) {
 			loadConfig();
-			//showAlert("Coming back from Settings");
 		}
 	}
 
